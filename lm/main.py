@@ -81,7 +81,8 @@ def main(
             shutil.rmtree(run_path)
         run_path.mkdir(exist_ok=True, parents=True)
         run_path_mark.touch()
-        shutil.copy(sp_model_path, run_path / 'sp.model')
+        if not os.path.samefile(str(sp_model_path), str(run_path / 'sp.model')):
+            shutil.copy(sp_model_path, run_path / 'sp.model')
 
     sp_model = spm.SentencePieceProcessor()
     sp_model.load(sp_model_path)
@@ -261,7 +262,12 @@ def main(
                     sample_index=valid_sample_index):
                 if not ctx:
                     continue
+                print("-----------")
+                print([x.shape for x in ctx])
+                print(ctx)
+                print("------------")
                 ctx = torch.LongTensor(ctx).to(device)
+
                 logits = model(ctx)['logits']
                 loss = loss_fn(logits, ctx)
                 losses.update(float(loss.item()))
