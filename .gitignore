@@ -7,3 +7,7 @@ __pycache__
 /tests/shakespeare/sp-model.model
 /tests/shakespeare/sp-model.vocab
 /tests/shakespeare/sp-text.txt
+
+# model downlaoded from https://goofy.zamia.org/zamia-speech/brain/
+
+/de345-root/*

@@ -262,12 +262,7 @@ def main(
                     sample_index=valid_sample_index):
                 if not ctx:
                     continue
-                print("-----------")
-                print([x.shape for x in ctx])
-                print(ctx)
-                print("------------")
                 ctx = torch.LongTensor(ctx).to(device)
-
                 logits = model(ctx)['logits']
                 loss = loss_fn(logits, ctx)
                 losses.update(float(loss.item()))
