@@ -153,7 +153,9 @@ def main(
         model.load_state_dict(state_dict)
         optimizer.load_state_dict(
             torch.load(optimizer_path, map_location=device))
-        print(f'Resuming from seen_tokens {seen_tokens:,}')
+        seen_tokens = 0
+        print(f'Setting seen tokens to  {seen_tokens}')
+
 
     if model_path.exists():
         load_model()
